@@ -1,0 +1,32 @@
+.highlighted {
+  background-color: #ffff66;
+  color: #000000;
+}
+
+.add-rule {
+  background-color: #ffffff;
+  color: #00ff00;
+}
+
+.remove-rule {
+  background-color: #ffffff;
+  color: #ff0000;
+}
+
+#player-rules-board-header {
+  /*text-align: center;*/
+}
+
+#roll-button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.half-split {
+  display: inline-block;
+  width: 50%;
+}
+
+.full {
+
+}
