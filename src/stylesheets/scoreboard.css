@@ -20,13 +20,62 @@
 #roll-button {
   background-color: #000000;
   color: #ffffff;
+  display: block;
+}
+
+.quarter-split {
+  width: 22%;
+  float: left;
+  padding-left: 1%;
+  padding-right: 1%;
+  border: 3px solid blue;
 }
 
 .half-split {
-  display: inline-block;
-  width: 50%;
+  width: 47%;
+  float: left;
+  padding-left: 1%;
+  padding-right: 1%;
+  border: 3px solid red;
 }
 
 .full {
+  width: 90%;
+  display: block;
+  border: 3px solid orange;
+}
 
+#placeholder {
+  width: 22%;
+  display: block;
+  border: 3px solid magenta;
+}
+
+#player-scoreboard {
+  /*border: 3px solid black;*/
+}
+
+#player-rules-board {
+  /*border: 3px solid black;*/
+  margin-top: 0px;
+}
+
+.common-rule {
+  width: 100%;
+  background-color: #f2f2f2;
+  border: 2px solid #bfbfbf;
+
+}
+
+.rare-rule {
+  width: 100%;
+  background-color: #0066ff;
+  border: 2px solid #0047b3;
+  color: #ffffff;
+}
+
+.legendary-rule {
+  width: 100%;
+  background-color: #ff9900;
+  border: 2px solid #cc7a00;
 }

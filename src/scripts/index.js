@@ -21,17 +21,25 @@ var DIE_1;
 var DIE_2;
 
 const CAN_WIN = true; // for development purposes
-const WINNING_SCORE = 500;
+const WINNING_SCORE = 300;
 var game_won = false;
 
 function adjustLayout() {
   // Check if page width is greater than page height
   if (window.innerWidth > window.innerHeight) {
-    $('#player-scoreboard').addClass("half-split");
+    $('#player-scoreboard').addClass("quarter-split");
     $('#player-rules-board').addClass("half-split");
+    $('#player-placeholder').addClass("quarter-split");
   } else {
     $('#player-scoreboard').addClass("full");
     $('#player-rules-board').addClass("full");
+  }
+
+  console.log($('#player-scoreboard').height() + ' v/s ' + ($('#player-rules-board').height()*8));
+  if ($('#player-scoreboard').height() > ($('#player-rules-board').height()*9)) {
+    $('#placeholder').height($('#player-scoreboard').height());
+  } else {
+    $('#placeholder').height(($('#player-rules-board').height()*9));
   }
 }
 
@@ -89,7 +97,7 @@ function calculateScore(player) {
 function createGameDisplay(players) {
   var game_area = document.getElementById('game-area');
 
-  var scoreboard = '<div id="player-scoreboard">';
+  var scoreboard = '\n<div id="player-scoreboard">';
   scoreboard += '\n<table id="player-scoreboard-table">';
   for (var i = 0; i < players.length; i++) {
     scoreboard += '\n  <tr id="' + players[i].name + '">';
@@ -102,7 +110,7 @@ function createGameDisplay(players) {
 
   game_area.innerHTML += scoreboard;
 
-  var player_rules_board = '<div id="player-rules-board">';
+  var player_rules_board = '\n<div id="player-rules-board">';
   player_rules_board += '\n<table id="player-rules-board-table">'
   for (var i = 0; i < MAX_RULES; i++) {
     player_rules_board += '\n  <tr>';
@@ -114,10 +122,18 @@ function createGameDisplay(players) {
 
   game_area.innerHTML += player_rules_board;
 
-  game_area.innerHTML += '<button id="roll-button" onclick="roll()">Roll</button>';
+  game_area.innerHTML += '<div id="player-placeholder"></div>';
 
-  rules_board = '<p id="active-rules-board">Active Rules:</p>';
-  rules_board += '\n<div id="active-rules-display">';
+  game_area.innerHTML += '<p id="placeholder"> </p>';
+
+  var dice_area = '\n<div class="full" id="dice-area">';
+  dice_area += '\n<button id="roll-button" onclick="roll()">Roll</button>';
+  dice_area += '\n</div>';
+
+  game_area.innerHTML += dice_area;
+
+  rules_board = '\n<p id="active-rules-board">Active Rules:</p>';
+  rules_board += '\n<div class="full" id="active-rules-display">';
   rules_board += '\n<table id="active-rules-board">';
   rules_board += '\n</table>';
   rules_board += '\n</div>';
@@ -270,7 +286,7 @@ function showPlayerRules() {
   for (var i = 0; i < PLAYERS[player_index].rules.length; i++) {
     content += '\n  <tr>';
     content += '\n    <td><button class="add-rule" onclick="addActiveRule(' + (i) + ')">+</button></td>'
-    content += '\n    <td class="player-rule" id="' + i + '">' + PLAYERS[player_index].rules[i].content + '</td>';
+    content += '\n    <td class="' + PLAYERS[player_index].rules[i].rarity + '-rule" id="' + i + '">' + PLAYERS[player_index].rules[i].content + '</td>';
     content += '\n  </tr>';
   }
   content += '\n</table>';
@@ -296,7 +312,7 @@ function showActiveRules() {
   for (var i = 0; i < active_rules.length; i++) {
     content += '\n  <tr>';
     content += '\n    <td><button class="remove-rule" onclick="removeActiveRule(' + (i) + ')">-</button></td>'
-    content += '\n    <td class="active-rule">' + active_rules[i].content + '</td>';
+    content += '\n    <td class="' + active_rules[i].rarity + '-rule">' + active_rules[i].content + '</td>';
     content += '\n  </tr>';
   }
   content += '\n</table>';
@@ -310,4 +326,6 @@ function unhighlightAllPlayers() {
   }
 }
 
-startGame(2, ["Gabe", "May"]);
+//var registered_players = ["Gabe", "May", "Christian", "Hailey", "Liana"];
+var registered_players = ["Gabe", "May"];
+startGame(registered_players.length, registered_players);
