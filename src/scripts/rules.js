@@ -146,21 +146,6 @@ function parseRule(rule) {
 
 function parseValue(value_str) {
   if(value_str.includes('/')) {
-    /*switch (value_str) {
-      case '1/2':
-        return 0.5;
-        break;
-      case '1/3':
-        return 0.33;
-        break;
-      case '1/4':
-        return 0.25;
-        break;
-      case '1/5':
-        retrun
-      default:
-
-    }*/
     var index = value_str.indexOf('/');
     var numerator = Number.parseInt(value_str.substring(0,index)), denominator = Number.parseInt(value_str.substring(index+1));
     return (numerator/denominator);
@@ -196,4 +181,18 @@ function removeActiveRule(index) {
 
   action_performed = true;
   showActiveRules();
+}
+
+function removePlayerRule(index) {
+  if (game_won) { return; }
+  if (action_performed) { console.log('Player already edited rules.'); return; }
+
+  for(var i = 0; i < MAX_RULES; i++) {
+      if (i == index) {
+          PLAYERS[player_index].rules.splice(i, 1);
+      }
+  }
+
+  action_performed = true;
+  showPlayerRules();
 }

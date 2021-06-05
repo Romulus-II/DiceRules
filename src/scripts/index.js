@@ -285,7 +285,8 @@ function showPlayerRules() {
   content += '\n<table id="player-rules-board-table">'
   for (var i = 0; i < PLAYERS[player_index].rules.length; i++) {
     content += '\n  <tr>';
-    content += '\n    <td><button class="add-rule" onclick="addActiveRule(' + (i) + ')">+</button></td>'
+    content += '\n    <td><button class="add-rule" onclick="addActiveRule(' + (i) + ')">+</button></td>';
+    content += '\n    <td><button class="remove-rule" onclick="removePlayerRule(' + (i) + ')">-</button></td>'
     content += '\n    <td class="' + PLAYERS[player_index].rules[i].rarity + '-rule" id="' + i + '">' + PLAYERS[player_index].rules[i].content + '</td>';
     content += '\n  </tr>';
   }
