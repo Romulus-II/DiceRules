@@ -35,7 +35,7 @@ function adjustLayout() {
     $('#player-rules-board').addClass("full");
   }
 
-  console.log($('#player-scoreboard').height() + ' v/s ' + ($('#player-rules-board').height()*8));
+  //console.log($('#player-scoreboard').height() + ' v/s ' + ($('#player-rules-board').height()*8));
   if ($('#player-scoreboard').height() > ($('#player-rules-board').height()*9)) {
     $('#placeholder').height($('#player-scoreboard').height());
   } else {
@@ -326,7 +326,3 @@ function unhighlightAllPlayers() {
     $('#' + PLAYERS[i].name).removeClass("highlighted");
   }
 }
-
-//var registered_players = ["Gabe", "May", "Christian", "Hailey", "Liana"];
-var registered_players = ["Gabe", "May"];
-startGame(registered_players.length, registered_players);
